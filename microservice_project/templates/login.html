@@ -1,0 +1,27 @@
+{% extends 'headBase.html' %}
+{% block main %}
+
+  
+
+  <div class="masthead" style="position: relative; top:-94px;">
+    <div class="container" style="position: relative; top:70px;left: 42px; Opacity:1;">
+      <div class="jumbotron">
+        <h1>REMARKET</h1>
+        <form class="form-signin" action="/validateLogin" method="post">
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
+
+        <button id="btnSignIn" class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+      </form>
+      </div>
+
+      <footer class="footer">
+        <p>&copy; Company 2018</p>
+      </footer>
+
+    </div>
+  </div>
+  
+{% endblock %}

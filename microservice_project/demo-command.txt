@@ -1,0 +1,74 @@
+artillery quick --duration 45 --rate 18 -n 20 http://microdcn.com/signUp
+artillery quick --duration 45 --rate 18 -n 20 http://microdcn.com
+artillery quick --duration 45 --rate 18 -n 20 http://microdcn.com/login
+
+kubectl set image deployment/micro-deployment apigateway=wjstk16/micro:1.0 --record
+
+
+kubectl delete deployment micro-deployment
+kubectl delete deployment micros-deployment
+kubectl delete deployment microl-deployment
+kubectl delete deployment microe-deployment
+kubectl delete deployment microsea-deployment
+kubectl delete deployment microg-deployment
+
+kubectl label nodes apigateway hostname=apigateway
+kubectl label nodes signup hostname=signup
+kubectl label nodes login hostname=login
+kubectl label nodes editproduct hostname=editproduct
+kubectl label nodes search hostname=search
+kubectl label nodes getlist hostname=getlist
+ 
+
+kubectl apply --record -f ./micro-signup-deployment.yaml
+kubectl apply --record -f ./micro-editproduct-deployment.yaml
+kubectl apply --record -f ./micro-search-deployment.yaml
+kubectl apply --record -f ./micro-getlist-deployment.yaml
+kubectl apply --record -f ./micro-apigateway-deployment.yaml
+kubectl apply --record -f ./micro-login-deployment.yaml
+
+
+
+kubectl apply --record -f ./micro-signup-service.yaml
+kubectl apply --record -f ./micro-editproduct-service.yaml
+kubectl apply --record -f ./micro-search-service.yaml
+kubectl apply --record -f ./micro-getlist-service.yaml
+kubectl apply --record -f ./micro-apigateway-service.yaml
+kubectl apply --record -f ./micro-login-service.yaml
+
+
+
+-----------------------------------
+vitrage command
+---------------------------
+sudo ovs-vsctl show
+cd /opt/stack/devstack/tools
+sudo ./discover_hosts.sh
+openstack compute service list
+. /opt/stack/devstack/openrc admin admin
+sudo systemctl stop devstack@c-*
+sudo journalctl -f -u devstack@n-*
+vitrage rca get
+vitrage resource list
+./manage.py collectstatic
+./manage.py compress
+sudo service apache2 restart
+openstack endpoint list
+source devstack/openrc admin admin
+./manage.py collectstatic
+./manage.py compress
+
+
+docker run --volume=/:/rootfs:ro \
+ --volume=/var/run:/var/run:rw \
+ --volume=/sys:/sys:ro \
+ --volume=/var/lib/docker/:/var/lib/docker:ro \
+ --volume=/dev/disk/:/dev/disk:ro \
+ --publish=8080:8080 --detach=true \
+ --name=cadvisor \
+ google/cadvisor:v0.27.0
+
+
+
+
+

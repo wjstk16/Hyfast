@@ -1,0 +1,28 @@
+metadata:
+    id: deduced_state_for_all_with_alarm
+    description: "deduced state for all resources with alarms"
+definitions:
+    entities:
+        - entity:
+            category: RESOURCE
+            template_id: a_resource 
+        - entity:
+            category: ALARM
+            severity: critical
+            template_id: high_alarm 
+    relationships:
+        - relationship:
+            source: high_alarm
+            target: a_resource
+            relationship_type: on
+            template_id : high_alarm_on_resource
+scenarios:
+    - scenario:
+        condition: high_alarm_on_resource
+        actions:
+            - action:
+               action_type : set_state
+               properties:
+                  state: error
+               action_target:
+                  target: a_resource

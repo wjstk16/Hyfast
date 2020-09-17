@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Python Flask Bucket List App</title>
+
+
+{#    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">#}
+{#    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>#}
+{#    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>#}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="{{ url_for('static',filename='js/bootbox.min.js') }}"></script>
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+{#    <link href="../static/css/signup.css" rel="stylesheet">#}
+      <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+
+
+
+<script src="../static/js/jquery.ui.widget.js"></script>
+
+<script type="text/javascript" src="../static/js/jquery.fileupload.js"></script>
+
+<script type="text/javascript" src="../static/js/jquery.fileupload-process.js"></script>
+
+<script type="text/javascript" src="../static/js/jquery.fileupload-ui.js"></script>
+    <style>
+        .btn-file {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+    </style>
+    <script>
+        count_Num=0;
+        $(function() {
+    $('#fileupload').fileupload({
+        url: 'http://microdcn.com:9007/upload',
+        dataType: 'json',
+
+        add: function(e, data) {
+            data.submit();
+        },
+        success: function(response, status) {
+
+            if(count_Num == 0 ){
+                var filePath = 'http://microdcn.com:9002/static/Uploads/' + response.filename;
+                $('#imgUpload').attr('src', filePath);
+                $('#filePath').val(filePath);
+
+            }
+
+            else if(count_Num == 1 ){
+                var filePath2 = 'http://microdcn.com:9002/static/Uploads/' + response.filename;
+                $('#imgUpload2').attr('src', filePath2);
+                $('#filePath2').val(filePath2);
+
+            }
+            else if(count_Num == 2 ){
+                var filePath3 = 'http://microdcn.com:9002/static/Uploads/' + response.filename;
+                $('#imgUpload3').attr('src', filePath3);
+                $('#filePath3').val(filePath3);
+
+            }
+            count_Num++;
+
+
+
+        },
+        error: function(error) {
+            console.log(error);
+            console.log('ddddddddddddddddddddddddddddddddd');
+        }
+    });
+})
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+
+
+        <form role="form" method="post" action="http://microdcn.com/editProduct/addProduct/{{id_num}}">
+
+
+            <!-- Form Name -->
+            <legend>Resist Your Product</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label for="txtTitle">Title</label>
+
+                <input id="txtTitle" name="inputTitle" type="text" placeholder="placeholder" class="form-control input-md">
+
+            </div>
+
+            <!-- Textarea -->
+            <div class="form-group">
+                <label for="txtPost">Description</label>
+
+                <textarea class="form-control" id="txtPost" name="inputDescription"></textarea>
+
+            </div>
+            <div class="form-group">
+                <label for="txtState">State</label>
+
+                <input id="txtState" name="inputState" type="text" placeholder="placeholder" class="form-control input-md">
+
+            </div>
+            <div class="form-group">
+                <label for="txtPrice">Price</label>
+
+                <input id="txtPrice" name="inputPrice" type="text" placeholder="placeholder" class="form-control input-md">
+
+            </div>
+
+
+            <div class="form-group">
+                <label for="txtPost">Photos</label>
+
+                <div class="input-group">
+                    <span class="input-group-btn">
+                    <span class="btn btn-primary btn-file">
+                        Browse&hellip; <input type="file" id="fileupload" name="file" multiple>
+                    </span>
+                    </span>
+                    <div class="pull-right">
+    <img id="imgUpload" style="width: 140px; height: 140px;" class="img-thumbnail"><input type="hidden" name="filePath" id="filePath"></input>
+                        <img id="imgUpload2" style="width: 140px; height: 140px;" class="img-thumbnail"><input type="hidden" name="filePath2" id="filePath2"></input>
+                        <img id="imgUpload3" style="width: 140px; height: 140px;" class="img-thumbnail"><input type="hidden" name="filePath3" id="filePath3"></input>
+</div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+            <!-- Button -->
+            <div class="form-group">
+
+                <p class="text-center">
+                    <input id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit" value="Publish" />
+                </p>
+            </div>
+
+
+        </form>
+
+        <footer class="footer">
+            <p>&copy; Company 2015</p>
+        </footer>
+
+    </div>
+</body>
+
+</html>

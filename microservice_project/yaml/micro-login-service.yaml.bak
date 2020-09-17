@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: microl-service
+spec:
+  ports:
+    - name: "login"
+      port: 5000
+      targetPort: 5000
+      nodePort: 32547
+    - name: "zabbix"
+      port: 10050
+      targetPort: 10050
+      nodePort: 32222	
+  selector:
+    app: microl
+  type: NodePort

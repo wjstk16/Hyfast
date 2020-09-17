@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: micro-service
+spec:
+  ports:
+    - name: "apigateway"
+      port: 5000
+      targetPort: 5000
+      nodePort: 31111
+    - name: "cadviosor"
+      port: 8080
+      targetPort: 8080
+      nodePort: 31120
+
+  selector:
+    app: micro
+  type: NodePort

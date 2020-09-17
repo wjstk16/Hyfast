@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: microsea-service
+spec:
+  ports:
+    - name: "search"
+      port: 5000
+      targetPort: 5000
+      nodePort: 31115
+  selector:
+    app: microsea
+  type: NodePort

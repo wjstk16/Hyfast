@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Python Flask App</title>
+{#    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">#}
+{#    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>#}
+{#    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>#}
+      <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+         <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+   <script type="text/javascript" src="{{ url_for('static',filename='js/bootbox.min.js') }}"></script>
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+      <script src="../static/js/jquery.ui.widget.js"></script>
+
+<script type="text/javascript" src="../static/js/jquery.fileupload.js"></script>
+<script type="text/javascript" src="../static/js/jquery.fileupload-process.js"></script>
+<script type="text/javascript" src="../static/js/jquery.fileupload-ui.js"></script>
+    <script>
+
+        $(function(){
+    function GetList() {
+
+                console.log('sdfsdfdsf');
+
+                var wishObj = {{ datas|tojson }};
+                var wishObjs = JSON.parse(wishObj);
+                console.log(wishObjs);
+
+                $('#listTemplate').tmpl(wishObjs).appendTo('#ulist');
+
+}});
+
+</script>
+
+       <style>
+    .trash {
+        color: rgb(209, 91, 71);
+    }
+    .panel-body .checkbox {
+        display: inline-block;
+        margin: 0px;
+    }
+    .list-group {
+        margin-bottom: 0px;
+    }
+</style>
+
+  </head>
+
+  <body>
+    <div class="container">
+
+
+
+      <div class="jumbotron">
+           <script id="listTemplate" type="text/x-jQuery-tmpl">
+
+    <li class="list-group-item">
+
+        <div class = "media">
+            <img src = "${product_file_path}"   style="width: 110px; height: 110px;">
+        </div>
+        <div class="checkbox">
+
+            <label> ${product_title} </label>
+
+
+
+        </div>
+        <div class="pull-right action-buttons">
+
+
+            <a data-id=${product_id} onclick="Edit(this)" ><span class="glyphicon glyphicon-pencil"></span></a>
+
+
+
+
+            <a data-id=${product_id} onclick="ConfirmDelete(this)" ><span class="glyphicon glyphicon-trash"></span></a>
+
+        </div>
+
+    </li>
+
+</script>
+    <div class="row">
+    <div class="col-md-12">
+
+        <div class="panel-body">
+
+            <ul id="ulist" class="list-group">
+
+
+
+            </ul>
+        </div>
+
+    </div>
+</div>
+      </div>
+
+
+
+
+      <footer class="footer">
+        <p>&copy; Company 2018</p>
+      </footer>
+
+    </div>
+
+  </body>
+</html>
+

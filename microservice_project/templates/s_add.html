@@ -1,0 +1,16 @@
+{% extends 'headBase.html' %}
+{% block main %}
+    <script  type=text/javascript>
+    $(function() {
+        alert('상품 등록이 완료되었습니다.');
+					// window.location.href = 'http://192.168.12.252:3000'
+					setTimeout(function() {
+        window.location.href = 'http://microdcn.com/userHome/{{ id_num }}'
+
+}, 3000);
+					});
+</script>
+
+
+
+{% endblock %}
